@@ -1,0 +1,92 @@
+# Virtual environment
+venv/
+ENV/
+env/
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Logs
+*.log
+
+# Compiled C extensions
+*.so
+
+# Temporary files
+*.tmp
+*.temp
+temp_*
+
+
+
+# Environment variables
+.env
+*.env
+
+
+token.json
+
+
+# Models
+models/*.pkl
+models/*.sav
+models/*.joblib
+models/*.h5
+models/*.pt
+models/*.onnx
+
+# Training outputs
+training/*.npy
+training/*.npz
+
+# Dataset
+DEAM/
+datasets/
+data/
+
+
+*.mp3
+*.wav
+*.flac
+*.m4a
+*.aac
+*.ogg
+
+
+# Node modules
+node_modules/
+
+# Build output
+build/
+dist/
+
+# Environment files
+frontend/.env
+frontend/.env.local
+frontend/.env.*.local
+
+# Cache
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+
+# VSCode
+.vscode/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+
+# Docker artifacts
+*.pid
+docker-compose.override.yml
