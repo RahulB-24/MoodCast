@@ -1,92 +1,38 @@
-# Virtual environment
-venv/
-ENV/
-env/
-.venv/
-
-# Python cache
+# Python
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
+venv/
+env/
 
-# Logs
-*.log
-
-# Compiled C extensions
-*.so
-
-# Temporary files
-*.tmp
-*.temp
-temp_*
-
-
-
-# Environment variables
+# Environment
 .env
-*.env
-
-
-token.json
-
 
 # Models
-models/*.pkl
-models/*.sav
-models/*.joblib
-models/*.h5
-models/*.pt
-models/*.onnx
+backend/models/*.pkl
 
-# Training outputs
-training/*.npy
-training/*.npz
+# User tokens (sensitive)
+backend/utils/user_token.json
 
-# Dataset
-DEAM/
-datasets/
-data/
+# FastAPI / Uvicorn logs
+*.log
 
+# OS / Editor files
+.DS_Store
+Thumbs.db
 
-*.mp3
-*.wav
-*.flac
-*.m4a
-*.aac
-*.ogg
-
-
-# Node modules
+# Node (future React frontend)
 node_modules/
-
-# Build output
-build/
 dist/
-
-# Environment files
-frontend/.env
-frontend/.env.local
-frontend/.env.*.local
+build/
 
 # Cache
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-
-
-# VSCode
+.idea/
 .vscode/
-
-# macOS
-.DS_Store
-
-# Windows
-Thumbs.db
-desktop.ini
+.cache/
 
 
-# Docker artifacts
-*.pid
-docker-compose.override.yml
+#Dataset
+
+DEAM/
