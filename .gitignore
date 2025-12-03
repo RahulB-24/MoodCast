@@ -10,7 +10,7 @@ env/
 .env
 
 # Models
-backend/models/*.pkl
+models/
 
 # User tokens (sensitive)
 backend/utils/user_token.json
