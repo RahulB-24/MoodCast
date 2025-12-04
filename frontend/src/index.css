@@ -1,0 +1,23 @@
+/* Reset body margin */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Improve font smoothing */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Layout wrapper */
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-main {
+  flex: 1;
+  padding-bottom: 40px;
+}

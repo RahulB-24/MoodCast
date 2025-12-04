@@ -9,22 +9,21 @@ router = APIRouter()
 
 @router.post("/predict_audio")
 async def predict_audio(file: UploadFile = File(...)):
-    # save temporary file
     temp_path = f"temp_{file.filename}"
 
     with open(temp_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
 
-    # 1. Detect language
+    # Detect language
     lang, lang_conf = detect_language(temp_path)
 
-    # 2. Run ML model
+    # ML inference
     result = run_inference(temp_path)
 
-    # remove temp file
+    # Cleanup
     os.remove(temp_path)
 
-    # add language into result
+    # Attach language info
     result["language"] = lang
     result["language_confidence"] = lang_conf
 
