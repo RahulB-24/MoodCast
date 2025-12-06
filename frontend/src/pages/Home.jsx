@@ -1,41 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 
 export default function Home() {
   return (
-    <div className="home-page">
-      <motion.h1
-        className="home-title neon-text"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-      >
-        MoodCast
-      </motion.h1>
+    <div className="home-page page">
+      <div className="home-inner container">
+        <h1 className="home-title">
+          <span className="logo-mood">Mood</span>
+          <span className="logo-cast">Cast</span>
+        </h1>
 
-      <motion.p
-        className="home-subtitle"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.2 }}
-      >
-        Discover music that matches your mood.
-      </motion.p>
+        <p className="home-subtitle">
+          Discover music that fits your mood. Upload a track to detect mood or search by mood.
+        </p>
 
-      <motion.div
-        className="home-buttons"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.4 }}
-      >
-        <Link to="/classify" className="btn btn-primary">
-          Detect Mood
-        </Link>
-
-        <Link to="/mood-search" className="btn btn-secondary">
-          Mood Search
-        </Link>
-      </motion.div>
+        <div className="home-cta">
+          <Link to="/classify" className="btn btn-primary">Detect Mood</Link>
+          <Link to="/mood-search" className="btn btn-secondary">Mood Search</Link>
+        </div>
+      </div>
     </div>
   );
 }

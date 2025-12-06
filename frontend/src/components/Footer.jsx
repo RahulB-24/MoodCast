@@ -3,7 +3,7 @@ import React from "react";
 export default function Footer() {
   return (
     <footer className="footer glass-footer">
-      <p>MoodCast © {new Date().getFullYear()}</p>
+      <p>MoodCast © {new Date().getFullYear()} - Made by Rahul Balachandar</p>
     </footer>
   );
 }

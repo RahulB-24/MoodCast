@@ -7,10 +7,13 @@ export default function Navbar() {
 
   return (
     <nav className="navbar glass-nav">
-      <div className="navbar-inner">
-        <Link to="/" className="navbar-logo">
-          <FiMusic size={22} />
-          <span>MoodCast</span>
+      <div className="nav-container">
+        <Link to="/" className="navbar-logo logo-anim" aria-label="MoodCast home">
+          <FiMusic size={22} className="logo-icon" />
+          <span className="logo-text">
+            <span className="logo-mood">Mood</span>
+            <span className="logo-cast">Cast</span>
+          </span>
         </Link>
 
         <div className="navbar-links">
@@ -18,7 +21,7 @@ export default function Navbar() {
           <Link className={pathname === "/classify" ? "active" : ""} to="/classify">Detect Mood</Link>
           <Link className={pathname === "/mood-search" ? "active" : ""} to="/mood-search">Mood Search</Link>
           <Link className={pathname === "/explore" ? "active" : ""} to="/explore">Explore</Link>
-          <Link className={pathname === "/connect" ? "active" : ""} to="/connect">Connect</Link>
+          <Link className={pathname === "/about" ? "active" : ""} to="/about">About</Link>
         </div>
       </div>
     </nav>
