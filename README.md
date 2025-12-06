@@ -66,10 +66,7 @@ Tracks are sorted and returned with preview URLs, images, and metadata.
 
 ### 🌐 **YouTube Integration**
 Clicking any track opens a YouTube search:
-https://www.youtube.com/results?search_query=<track+name>
-
-markdown
-Copy code
+https://www.youtube.com/results?search_query=<track+name>   
 
 ### ❤️ **About Page**
 Contains:
@@ -113,41 +110,41 @@ Contains:
 ---
 
 # 📁 Project Structure
-
+```bash
 Moodcast/
 ├── backend/
-│ ├── app.py
-│ ├── routes/
-│ │ ├── mood_routes.py
-│ │ ├── spotify_auth_routes.py
-│ │ ├── spotify_search_routes.py
-│ │ ├── spotify_recommend_v3_routes.py
-│ ├── utils/
-│ │ ├── inference.py
-│ │ ├── language_detection.py
-│ │ ├── spotify_client.py
-│ │ ├── spotify_audio_features.py
-│ │ ├── mood_ranker.py
-│ ├── training/
-│ ├── models/
-│ ├── DEAM/
-│ ├── .env
+│   ├── app.py
+│   ├── routes/
+│   │   ├── mood_routes.py
+│   │   ├── spotify_auth_routes.py
+│   │   ├── spotify_search_routes.py
+│   │   ├── spotify_recommend_v3_routes.py
+│   ├── utils/
+│   │   ├── inference.py
+│   │   ├── language_detection.py
+│   │   ├── spotify_client.py
+│   │   ├── spotify_audio_features.py
+│   │   ├── mood_ranker.py
+│   ├── training/
+│   ├── models/
+│   ├── DEAM/
+│   ├── .env
 │
 ├── frontend/
-│ ├── index.html
-│ ├── src/
-│ │ ├── components/
-│ │ ├── pages/
-│ │ ├── hooks/
-│ │ ├── styles/
-│ │ ├── api/
-│ │ ├── main.jsx
-│ │ ├── App.jsx
-│ │ ├── index.css
+│   ├── index.html
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── hooks/
+│   │   ├── styles/
+│   │   ├── api/
+│   │   ├── main.jsx
+│   │   ├── App.jsx
+│   │   ├── index.css
 │
 └── README.md
+```
 
-yaml
 
 ---
 
