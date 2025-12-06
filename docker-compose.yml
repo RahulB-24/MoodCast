@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: moodcast-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - SPOTIFY_CLIENT_ID=${SPOTIFY_CLIENT_ID}
+      - SPOTIFY_CLIENT_SECRET=${SPOTIFY_CLIENT_SECRET}
+      - HF_HOME=/root/.cache/huggingface
+    volumes:
+      - ./models:/app/models
+      - ./DEAM:/app/DEAM
+      - ./backend/utils/user_token.json:/app/backend/utils/user_token.json
+    networks:
+      - moodcast-net
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: moodcast-frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+    environment:
+      - MODE=production
+    networks:
+      - moodcast-net
+
+networks:
+  moodcast-net:
+    driver: bridge

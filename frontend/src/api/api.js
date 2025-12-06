@@ -1,15 +1,17 @@
 import axios from "axios";
 
-const BASE = import.meta.env.VITE_BACKEND_URL || "http://127.0.0.1:8000";
+let BASE = "http://localhost:8000";
+
+// Use environment override if provided
+if (import.meta.env.VITE_BACKEND_URL) {
+  BASE = import.meta.env.VITE_BACKEND_URL;
+}
 
 const client = axios.create({
   baseURL: BASE,
   timeout: 20000,
 });
 
-/*
-  Upload audio → old backend uses /predict_audio
-*/
 export async function uploadAudio(file, onUploadProgress) {
   const form = new FormData();
   form.append("file", file);
@@ -22,17 +24,11 @@ export async function uploadAudio(file, onUploadProgress) {
   return res.data;
 }
 
-/*
-  Mood search → backend uses /recommend_v3/search_by_mood
-*/
 export async function searchByMood(payload) {
   const res = await client.post("/recommend_v3/search_by_mood", payload);
   return res.data;
 }
 
-/*
-  Standard Spotify search routes
-*/
 export async function searchTracks(query) {
   const res = await client.get("/search/tracks", { params: { query } });
   return res.data;

@@ -1,0 +1,31 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Node
+frontend/node_modules/
+frontend/dist/
+
+# Git
+.git/
+.gitignore
+
+# Environment files
+.env
+
+# Dataset (do NOT copy into Docker)
+DEAM/
+
+# Large media files
+*.wav
+*.mp3
+
+# Build & Compose Files
+docker-compose.yml
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
