@@ -9,7 +9,7 @@ It combines:
 - A React + Vite frontend with animated, music-themed UI  
 - Spotify Search API  
 - A scoring engine for ranking and filtering tracks  
-
+<img width="2114" height="1022" alt="Image" src="https://github.com/user-attachments/assets/1fd37c22-5ea4-4d77-a531-5bf2cbd3ca92" />
 ---
 
 ## 🌟 Features
