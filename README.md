@@ -9,7 +9,7 @@ It combines:
 - A React + Vite frontend with animated, music-themed UI  
 - Spotify Search API  
 - A scoring engine for ranking and filtering tracks  
-<img width="2114" height="1022" alt="Image" src="https://github.com/user-attachments/assets/1fd37c22-5ea4-4d77-a531-5bf2cbd3ca92" />
+<img width="3199" height="1837" alt="Image" src="https://github.com/user-attachments/assets/6196b6b4-6cde-4f48-81b7-ad694c613f59" />
 ---
 
 ## 🌟 Features
@@ -73,6 +73,16 @@ Includes:
 - Skills, experience, achievements  
 - GitHub, LinkedIn, Email links  
 - Source code link  
+<table>
+  <tr>
+    <td><img src="URL1" width="500"></td>
+    <td><img src="URL2" width="500"></td>
+  </tr>
+  <tr>
+    <td><img src="URL3" width="500"></td>
+    <td><img src="URL4" width="500"></td>
+  </tr>
+</table>
 
 ---
 
@@ -105,6 +115,7 @@ Includes:
 - Axios  
 - YouTube Redirect  
 
+<img width="2114" height="1022" alt="Image" src="https://github.com/user-attachments/assets/1fd37c22-5ea4-4d77-a531-5bf2cbd3ca92" />
 ---
 
 # 📁 Project Structure
