@@ -110,7 +110,14 @@ Includes:
 # 📁 Project Structure
 ```bash
 Moodcast/
+├── docker-compose.yml
+├── requirements.txt
+├── training/
+├── models/
+├── DEAM/
+│
 ├── backend/
+│   ├── Dockerfile
 │   ├── app.py
 │   ├── routes/
 │   │   ├── mood_routes.py
@@ -129,6 +136,7 @@ Moodcast/
 │   ├── .env
 │
 ├── frontend/
+│   ├── Dockerfile
 │   ├── index.html
 │   ├── src/
 │   │   ├── components/
@@ -139,8 +147,10 @@ Moodcast/
 │   │   ├── main.jsx
 │   │   ├── App.jsx
 │   │   ├── index.css
+│   ├── nginx.conf
 │
 └── README.md
+
 ```
 
 
