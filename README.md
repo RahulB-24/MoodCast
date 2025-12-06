@@ -185,10 +185,6 @@ Audio → mood → ranked tracks.
 }
 ```
 
-### **4. GET /search/genres**
-
-Returns Spotify genre seeds.
-
 ---
 
 # 🎨 Frontend UI Pages
@@ -207,7 +203,7 @@ Enter mood/language/keywords → ranked tracks.
 
 ### **Explore**
 
-Search Spotify directly.
+Search music and artists directly.
 
 ### **About**
 
@@ -386,7 +382,4 @@ The MoodCast project is released under the MIT License.
 # ⭐ Contribute
 
 Issues and PRs welcome.
-
-🎵 **MoodCast**
-AI. Music. Mood. Discovery.
 
