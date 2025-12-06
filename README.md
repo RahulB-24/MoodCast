@@ -1,4 +1,3 @@
-````
 # 🎵 MoodCast  
 **AI-powered Mood Classification and Music Discovery**
 
@@ -64,7 +63,7 @@ Tracks are ranked based on:
   - About  
 
 ### 🌐 **YouTube Integration**
-Clicking a track opens:
+Clicking a track opens:  
 https://www.youtube.com/results?search_query=<track+name>
 
 ### ❤️ **About Page**
@@ -142,7 +141,8 @@ Moodcast/
 │   │   ├── index.css
 │
 └── README.md
-````
+```
+
 
 ---
 
@@ -328,21 +328,6 @@ services:
     restart: unless-stopped
 ```
 
-## **Nginx Config**
-
-```nginx
-server {
-    listen 80;
-    server_name localhost;
-
-    location / {
-        root /usr/share/nginx/html;
-        index index.html index.htm;
-        try_files $uri $uri/ /index.html;
-    }
-}
-```
-
 ---
 
 # 🚀 Production Deployment
@@ -384,7 +369,7 @@ LinkedIn: [https://linkedin.com/in/](https://linkedin.com/in/)
 
 # 📄 License
 
-MIT License
+The MoodCast project is released under the MIT License.
 
 ---
 
@@ -395,5 +380,3 @@ Issues and PRs welcome.
 🎵 **MoodCast**
 AI. Music. Mood. Discovery.
 
-```
-```
