@@ -1,3 +1,4 @@
+````
 # 🎵 MoodCast  
 **AI-powered Mood Classification and Music Discovery**
 
@@ -25,15 +26,15 @@ It combines:
   and more.
 
 ### 🗣️ **Language Detection**
-- Faster-Whisper detects the primary spoken/sung language in the audio.
-- Language is used to bias search queries (e.g., *tamil sad*, *hindi romantic*, etc.).
+- Faster-Whisper detects the primary spoken or sung language.
+- Detected language influences Spotify search queries.
 
 ### 🔍 **Music Search Pipeline**
-MoodCast supports:
+Supports:
 1. **Classify + Search** (upload audio → get songs instantly)  
-2. **Search by Mood Only** (no audio, user enters mood, keywords, artists, tracks)
+2. **Search by Mood Only** (keywords, artists, mood, no audio)
 
-Queries are intelligently generated using:
+Query generation uses:
 - mood  
 - language  
 - genres  
@@ -42,22 +43,20 @@ Queries are intelligently generated using:
 - track names  
 
 ### 🎼 **Scoring Engine**
-Each found track is scored using:
+Tracks are ranked based on:
 - mood matching  
 - keyword matching  
-- language keyword  
-- track/artist text relevance  
-- Spotify popularity score  
-
-Tracks are sorted and returned with preview URLs, images, and metadata.
+- language-based bias  
+- track or artist text relevance  
+- Spotify popularity  
 
 ### 🖥️ **Modern React Frontend (Vite)**
-- Soft gradient background  
-- Animated logo with warm/cool color theme (Coral + Electric Blue)  
-- Music-themed animations:
-  - Folder → folder music note transition during upload  
+- Soft gradient UI  
+- Animated logo (Coral + Electric Blue theme)  
+- Music animations:
+  - Folder → folder-music-note transition  
   - Rotating vinyl during search  
-- Clean, intuitive pages:
+- Pages:
   - Home  
   - Detect Mood  
   - Search by Mood  
@@ -65,16 +64,16 @@ Tracks are sorted and returned with preview URLs, images, and metadata.
   - About  
 
 ### 🌐 **YouTube Integration**
-Clicking any track opens a YouTube search:
-https://www.youtube.com/results?search_query=<track+name>   
+Clicking a track opens:
+https://www.youtube.com/results?search_query=<track+name>
 
 ### ❤️ **About Page**
-Contains:
-- About the project  
-- About the developer  
-- Experience, skills, achievements  
-- GitHub, LinkedIn, Email icons  
-- Source Code link  
+Includes:
+- Project details  
+- Developer info  
+- Skills, experience, achievements  
+- GitHub, LinkedIn, Email links  
+- Source code link  
 
 ---
 
@@ -91,21 +90,21 @@ Contains:
 - Uvicorn  
 
 ### **Frontend**
-- React (Vite)
-- CSS Modules & Global Styles
-- Framer Motion
-- React Icons
+- React (Vite)  
+- CSS Modules + Global Styles  
+- Framer Motion  
+- React Icons  
 
 ### **AI / ML**
-- Feature extraction: Librosa  
-- Regression models: RandomForest  
-- Language detection: Faster-Whisper  
-- Custom mapping from valence + arousal → mood  
+- Librosa: feature extraction  
+- RandomForest: mood regression  
+- Faster-Whisper: language detection  
+- Custom mapping: valence + arousal → mood  
 
 ### **Other**
 - Spotify Web API  
 - Axios  
-- YouTube Search Redirect  
+- YouTube Redirect  
 
 ---
 
@@ -143,15 +142,14 @@ Moodcast/
 │   │   ├── index.css
 │
 └── README.md
-```
-
+````
 
 ---
 
 # 📡 Backend API Endpoints
 
 ### **1. POST /classify**
-Upload audio, returns:
+
 ```json
 {
   "valence": 5.4,
@@ -160,122 +158,242 @@ Upload audio, returns:
   "language": "ta",
   "language_confidence": 0.76
 }
-2. POST /recommend_v3/classify_and_search
-Upload audio + optional params → returns full ranked track list.
+```
 
-3. POST /recommend_v3/search_by_mood
-Body example:
+### **2. POST /recommend_v3/classify_and_search**
 
-json
-Copy code
+Audio → mood → ranked tracks.
+
+### **3. POST /recommend_v3/search_by_mood**
+
+```json
 {
   "mood": "sad calm",
   "language": "ta",
   "keywords": ["lofi"],
   "artist_names": ["Arijit Singh"]
 }
-4. GET /search/genres
-Returns available genre seeds.
+```
 
-🎨 Frontend UI Pages
-Home
-Logo, tagline, simple navigation.
+### **4. GET /search/genres**
 
-Detect Mood
-Upload → ML → mood visualization → music discovery button.
+Returns Spotify genre seeds.
 
-Search by Mood
-Enter mood, language, keywords → ranked tracks.
+---
 
-Explore
+# 🎨 Frontend UI Pages
+
+### **Home**
+
+Branding, navigation.
+
+### **Detect Mood**
+
+Upload audio → ML inference → show mood → discover music.
+
+### **Search by Mood**
+
+Enter mood/language/keywords → ranked tracks.
+
+### **Explore**
+
 Search Spotify directly.
 
-About
-Developer info, experience, skills, achievements, GitHub source code link.
+### **About**
 
-🏗️ Local Development Setup
-1. Clone the Repo
-bash
-Copy code
+Developer profile + project info + links.
+
+---
+
+# 🏗️ Local Development Setup
+
+## **1. Clone the Repo**
+
+```bash
 git clone https://github.com/RahulB-24/MoodCast
 cd Moodcast
-2. Backend Setup
-Create virtual environment:
-bash
-Copy code
+```
+
+## **2. Backend Setup**
+
+```bash
 python -m venv venv
 source venv/bin/activate   # mac/linux
 venv\Scripts\activate      # windows
-Install dependencies:
-bash
-Copy code
 pip install -r requirements.txt
-Add .env:
-ini
-Copy code
+```
+
+### Add `.env`:
+
+```ini
 SPOTIFY_CLIENT_ID=xxxx
 SPOTIFY_CLIENT_SECRET=xxxx
 SPOTIFY_REDIRECT_URI=http://127.0.0.1:8000/auth/callback
 SPOTIFY_USER_TOKEN_PATH=backend/utils/user_token.json
 HF_HOME=~/.cache/huggingface
-Run backend:
-bash
-Copy code
+```
+
+### Run Backend
+
+```bash
 uvicorn backend.app:app --reload
-3. Frontend Setup
-bash
-Copy code
+```
+
+## **3. Frontend Setup**
+
+```bash
 cd frontend
 npm install
 npm run dev
+```
+
 Visit:
 
-arduino
-Copy code
+```
 http://localhost:5173
-🐳 Docker (Will be added next)
-A complete Docker section will appear here after we generate:
+```
 
-Backend Dockerfile
+---
 
-Frontend Dockerfile
+# 🐳 Docker Setup
 
-Nginx reverse proxy config
+## **Backend Dockerfile**
 
-docker-compose.yml
+```dockerfile
+FROM python:3.11-slim-buster
+WORKDIR /app
+COPY backend/requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+COPY backend/ ./backend/
+COPY models/ ./models/
+COPY DEAM/ ./DEAM/
+ENV HF_HOME=/root/.cache/huggingface
+EXPOSE 8000
+CMD ["uvicorn", "backend.app:app", "--host", "0.0.0.0", "--port",  "8000"]
+```
 
-Production build instructions
+## **Frontend Dockerfile**
 
-☁️ AWS EC2 Deployment (Coming next)
-This section will include:
+```dockerfile
+FROM node:18-alpine AS build
+WORKDIR /app
+COPY frontend/package*.json ./
+RUN npm install
+COPY frontend/ .
+ARG VITE_BACKEND_URL
+ENV VITE_BACKEND_URL=$VITE_BACKEND_URL
+RUN npm run build
 
-EC2 instance setup
+FROM nginx:alpine
+COPY frontend/nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /app/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
+```
 
-Docker installation
+## **docker-compose.yml**
 
-Pull + run containers
+```yaml
+version: '3.8'
 
-Environment variable injection
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: moodcast-backend
+    volumes:
+      - ./models:/app/models
+      - ./DEAM:/app/DEAM
+      - ./backend/utils/user_token.json:/app/backend/utils/user_token.json
+    ports:
+      - "8000:8000"
+    environment:
+      SPOTIFY_CLIENT_ID=${SPOTIFY_CLIENT_ID}
+      SPOTIFY_CLIENT_SECRET=${SPOTIFY_CLIENT_SECRET}
+      SPOTIFY_REDIRECT_URI=${SPOTIFY_REDIRECT_URI}
+      SPOTIFY_USER_TOKEN_PATH=/app/backend/utils/user_token.json
+      HF_HOME=/root/.cache/huggingface
+    restart: unless-stopped
 
-HTTPS using Caddy or Nginx + Certbot
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+      args:
+        VITE_BACKEND_URL=${VITE_BACKEND_URL}
+    container_name: moodcast-frontend
+    ports:
+      - "5173:80"
+    restart: unless-stopped
+```
 
-Domain configuration
+## **Nginx Config**
 
-👤 Author
-Rahul Balachandar
-AI/ML Engineer & Full-Stack Developer
+```nginx
+server {
+    listen 80;
+    server_name localhost;
 
-Email: rahulbalachandar24@gmail.com
+    location / {
+        root /usr/share/nginx/html;
+        index index.html index.htm;
+        try_files $uri $uri/ /index.html;
+    }
+}
+```
 
-GitHub: https://github.com/RahulB-24
+---
 
-LinkedIn: https://linkedin.com/in/
+# 🚀 Production Deployment
 
-📄 License
-This project is open-source under MIT License.
+## **.env**
 
-⭐ Contribute
-Feel free to submit issues or PRs to improve MoodCast.
+```ini
+SPOTIFY_CLIENT_ID=your_spotify_client_id
+SPOTIFY_CLIENT_SECRET=your_spotify_client_secret
+SPOTIFY_REDIRECT_URI=http://<public-ip>:8000/auth/callback
+VITE_BACKEND_URL=http://<public-ip>:8000
+```
 
-🎵 MoodCast
+## **Build and Run**
+
+```bash
+docker compose down
+docker compose build --no-cache
+docker compose up -d
+```
+
+Frontend:
+http://<public-ip>:5173
+Backend:
+http://<public-ip>:8000
+
+---
+
+# 👤 Author
+
+**Rahul Balachandar**
+AI/ML Engineer and Full-Stack Developer
+
+Email: [rahulbalachandar24@gmail.com](mailto:rahulbalachandar24@gmail.com)
+GitHub: [https://github.com/RahulB-24](https://github.com/RahulB-24)
+LinkedIn: [https://linkedin.com/in/](https://linkedin.com/in/)
+
+---
+
+# 📄 License
+
+MIT License
+
+---
+
+# ⭐ Contribute
+
+Issues and PRs welcome.
+
+🎵 **MoodCast**
 AI. Music. Mood. Discovery.
+
+```
+```
