@@ -14,7 +14,7 @@ MoodCast is an intelligent music exploration system that analyzes audio samples 
 - Custom scoring engine for track ranking
 
 ---
-
+<img width="2114" height="1022" alt="Image" src="https://github.com/user-attachments/assets/1fd37c22-5ea4-4d77-a531-5bf2cbd3ca92" />
 ## Features
 
 ### Mood Classification
