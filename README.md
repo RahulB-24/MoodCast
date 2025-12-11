@@ -1,4 +1,3 @@
-```markdown
 # MoodCast
 
 **AI-Powered Mood Classification and Music Discovery**
@@ -9,8 +8,8 @@ MoodCast is an intelligent music exploration system that analyzes audio samples 
 - FastAPI backend with ML inference pipeline
 - React + Vite frontend with animated UI
 - Librosa for audio feature extraction
-- RandomForest model for valence/arousal prediction
-- Faster-Whisper for language detection
+- RandomForest model for valence and arousal prediction
+- Faster Whisper for language detection
 - Spotify Search API integration
 - Custom scoring engine for track ranking
 
@@ -21,42 +20,42 @@ MoodCast is an intelligent music exploration system that analyzes audio samples 
 ### Mood Classification
 
 Upload an audio file to extract acoustic features using Librosa. A trained RandomForest model predicts valence and arousal values, which are then mapped to discrete mood categories such as:
-- `happy energetic`
-- `sad calm`
-- `neutral`
-- `melancholic`
+- happy energetic
+- sad calm
+- neutral
+- melancholic
 
 ### Language Detection
 
-Faster-Whisper analyzes the audio to detect the primary language, which is used to refine Spotify search queries for more relevant results.
+Faster Whisper analyzes the audio to detect the primary language. The detected language is used to refine Spotify search queries for more relevant track results.
 
 ### Music Search Pipeline
 
 The system supports two search modes:
 
-1. **Classify + Search**: Upload audio to automatically detect mood and receive song recommendations
-2. **Search by Mood**: Manually specify mood, language, genres, keywords, artist names, or track names
+1. **Classify and Search** Upload audio to automatically detect mood and receive song recommendations  
+2. **Search by Mood** Manually specify mood, language, genres, keywords, artist names, or track names
 
 ### Track Scoring and Ranking
 
 Results are ranked using a custom scoring engine that considers:
-- Mood matching (valence/arousal alignment)
+- Mood matching using valence and arousal
 - Keyword relevance
 - Language preference
-- Track and artist text matching
+- Track and artist text similarity
 - Spotify popularity metrics
 
 ### Frontend Interface
 
 Built with React and Vite, featuring:
-- Gradient-based UI design (Coral and Electric Blue theme)
+- Gradient themed UI with coral and electric blue
 - Animated logo and transitions
-- Music-themed animations (folder-to-music-note transition, rotating vinyl)
-- Navigation pages: Home, Detect Mood, Search by Mood, Explore, About
+- Music themed animations like rotating vinyl and folder to music note transitions
+- Navigation pages including Home, Detect Mood, Search by Mood, Explore, About
 
 ### External Integration
 
-Clicking a track redirects to YouTube search results for easy listening:
+Clicking a track redirects to YouTube search results:
 
 ```
 https://www.youtube.com/results?search_query=<track+name>
@@ -68,28 +67,29 @@ https://www.youtube.com/results?search_query=<track+name>
 
 ### Backend
 - Python, FastAPI, Uvicorn
-- Librosa (audio feature extraction)
-- Scikit-Learn (RandomForest regressor)
-- Faster-Whisper (language detection)
-- Requests (HTTP client)
+- Librosa for audio feature extraction
+- Scikit Learn for RandomForest regression
+- Faster Whisper for language detection
+- Requests for API calls
 
 ### Frontend
-- React (Vite build tool)
+- React with Vite
 - CSS Modules with global styles
-- Framer Motion (animations)
+- Framer Motion for animations
 - React Icons
 
 ### Machine Learning
-- Librosa for extracting MFCCs, spectral features, tempo, etc.
-- RandomForest for valence/arousal regression
-- Custom mood mapping logic
-- Faster-Whisper for multilingual transcription
+- Librosa for MFCCs, spectral features, tempo
+- RandomForest for valence and arousal prediction
+- Custom mood mapping rules
+- Faster Whisper for multilingual transcription
 
 ### APIs
-- Spotify Web API (search and audio features)
-- YouTube (external redirect)
+- Spotify Web API for search and audio features
+- YouTube for external redirect
 
 <img width="2114" height="1022" alt="Image" src="https://github.com/user-attachments/assets/1fd37c22-5ea4-4d77-a531-5bf2cbd3ca92" />
+
 ---
 
 ## Project Structure
@@ -98,24 +98,24 @@ https://www.youtube.com/results?search_query=<track+name>
 Moodcast/
 ├── docker-compose.yml
 ├── requirements.txt
-├── training/              # Model training scripts
-├── models/                # Saved ML models
-├── DEAM/                  # Dataset (if applicable)
+├── training/
+├── models/
+├── DEAM/
 │
 ├── backend/
 │   ├── Dockerfile
-│   ├── app.py             # FastAPI application entry point
+│   ├── app.py
 │   ├── routes/
 │   │   ├── mood_routes.py
 │   │   ├── spotify_auth_routes.py
 │   │   ├── spotify_search_routes.py
 │   │   └── spotify_recommend_v3_routes.py
 │   ├── utils/
-│   │   ├── inference.py              # ML model inference
-│   │   ├── language_detection.py     # Faster-Whisper integration
-│   │   ├── spotify_client.py         # Spotify API client
-│   │   ├── spotify_audio_features.py # Audio feature retrieval
-│   │   └── mood_ranker.py            # Track scoring logic
+│   │   ├── inference.py
+│   │   ├── language_detection.py
+│   │   ├── spotify_client.py
+│   │   ├── spotify_audio_features.py
+│   │   └── mood_ranker.py
 │   ├── training/
 │   ├── models/
 │   ├── DEAM/
@@ -142,11 +142,11 @@ Moodcast/
 
 ## API Endpoints
 
-### `POST /classify`
+### POST /classify
 
 Accepts an audio file and returns mood classification results.
 
-**Response:**
+**Example Response**
 
 ```json
 {
