@@ -1,6 +1,5 @@
 FROM python:3.11-slim
 
-# Install system dependencies for audio processing
 RUN apt-get update && apt-get install -y \
     ffmpeg \
     libsndfile1 \
@@ -8,19 +7,14 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
-# Copy the requirements file from project root
 COPY requirements.txt .
-
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy backend source code
 COPY backend/ backend/
-
-# Copy training folder from the project root
+COPY models/ models/
 COPY training/ training/
 
-# Copy ML models
-COPY models/ models/
+ENV HF_HOME=/tmp/huggingface
 
 EXPOSE 8000
 
