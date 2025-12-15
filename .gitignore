@@ -13,8 +13,6 @@ env/
 .env.production.local
 .env.test.local
 
-# Models (large files)
-models/
 backend/utils/user_token.json
 
 # Dataset (very large)
