@@ -114,7 +114,6 @@ https://www.youtube.com/results?search_query=<track+name>
 - React with Vite
 - CSS Modules with global styles
 - Framer Motion for animations
-- React Icons
 - Deployed on Vercel
 
 ### Machine Learning
