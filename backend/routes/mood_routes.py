@@ -1,6 +1,7 @@
 from fastapi import APIRouter, UploadFile, File
 import shutil
 import os
+import tempfile
 
 from backend.utils.inference import run_inference
 from backend.utils.language_detection import detect_language
@@ -9,12 +10,14 @@ router = APIRouter()
 
 @router.post("/predict_audio")
 async def predict_audio(file: UploadFile = File(...)):
-    temp_path = f"temp_{file.filename}"
+    print(">>> predict_audio called")
 
-    with open(temp_path, "wb") as buffer:
-        shutil.copyfileobj(file.file, buffer)
+    # Always use /tmp on Render
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3", dir="/tmp") as tmp:
+        shutil.copyfileobj(file.file, tmp)
+        temp_path = tmp.name
 
-    # Detect language
+    # Detect language (stubbed)
     lang, lang_conf = detect_language(temp_path)
 
     # ML inference
@@ -23,7 +26,6 @@ async def predict_audio(file: UploadFile = File(...)):
     # Cleanup
     os.remove(temp_path)
 
-    # Attach language info
     result["language"] = lang
     result["language_confidence"] = lang_conf
 
