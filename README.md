@@ -14,12 +14,40 @@ MoodCast is an intelligent music exploration system that analyzes audio samples 
 - Custom scoring engine for track ranking
 
 ---
+
+## Live Deployment
+
+The application is publicly accessible worldwide using a **fully free-tier cloud deployment**.
+
+### Frontend
+- **Platform**: Vercel
+- **URL**: https://mood-cast-xi.vercel.app/
+- **Details**:
+  - Global CDN with HTTPS by default
+  - Always-on (no cold starts)
+  - Static React + Vite build
+
+### Backend
+- **Platform**: Render (Free Tier)
+- **API Base URL**: https://moodcast-backend-qsjk.onrender.com
+- **Details**:
+  - Dockerized FastAPI service
+  - Hosts ML inference, audio processing, and Spotify integration
+  - Free-tier instances **sleep after inactivity**
+  - First request after idle may take ~30–60 seconds (cold start)
+
+> The frontend communicates with the backend over HTTPS. No user authentication is required.
+
+---
 <img width="3199" height="1837" alt="Image" src="https://github.com/user-attachments/assets/a8a660de-82dd-435c-a5df-2265294ed04c" />
+
 ## Features
 
 ### Mood Classification
 
-Upload an audio file to extract acoustic features using Librosa. A trained RandomForest model predicts valence and arousal values, which are then mapped to discrete mood categories such as:
+Users upload an audio file, and MoodCast processes **only a 10-second segment from the middle of the track** to ensure fast and reliable inference on free-tier infrastructure.
+
+Librosa extracts acoustic features, and a trained RandomForest model predicts valence and arousal values, which are then mapped to discrete mood categories such as:
 - happy energetic
 - sad calm
 - neutral
@@ -27,7 +55,7 @@ Upload an audio file to extract acoustic features using Librosa. A trained Rando
 
 ### Language Detection
 
-Faster Whisper analyzes the audio to detect the primary language. The detected language is used to refine Spotify search queries for more relevant track results.
+Faster Whisper (tiny model) analyzes the trimmed audio segment to detect the primary language. The detected language is used to refine Spotify search queries for more relevant track results.
 
 ### Music Search Pipeline
 
@@ -72,6 +100,7 @@ https://www.youtube.com/results?search_query=<track+name>
     <td><img src="https://github.com/user-attachments/assets/a9070208-c7a0-469d-a18b-9ff07ecda1ee" width="500"></td>
   </tr>
 </table>
+
 ## Tech Stack
 
 ### Backend
@@ -80,12 +109,14 @@ https://www.youtube.com/results?search_query=<track+name>
 - Scikit Learn for RandomForest regression
 - Faster Whisper for language detection
 - Requests for API calls
+- Deployed on Render (Dockerized)
 
 ### Frontend
 - React with Vite
 - CSS Modules with global styles
 - Framer Motion for animations
 - React Icons
+- Deployed on Vercel
 
 ### Machine Learning
 - Librosa for MFCCs, spectral features, tempo
@@ -254,9 +285,13 @@ The frontend will be available at `http://localhost:5173`.
 
 ---
 
-## Docker Deployment
+## Cloud Deployment
 
-### Backend Dockerfile
+### Backend Deployment (Render)
+
+The backend is containerized using Docker and deployed on **Render's free tier**.
+
+**Dockerfile:**
 
 ```dockerfile
 FROM python:3.11-slim-buster
@@ -267,35 +302,53 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY backend/ ./backend/
 COPY models/ ./models/
-COPY DEAM/ ./DEAM/
+COPY training/ ./training/
 
-ENV HF_HOME=/root/.cache/huggingface
+ENV HF_HOME=/tmp/huggingface
 
-EXPOSE 8000
-CMD ["uvicorn", "backend.app:app", "--host", "0.0.0.0", "--port", "8000"]
+EXPOSE 10000
+CMD ["uvicorn", "backend.app:app", "--host", "0.0.0.0", "--port", "10000"]
 ```
 
-### Frontend Dockerfile
+**Deployment Steps:**
+1. Push your code to GitHub
+2. Create a new Web Service on Render
+3. Connect your GitHub repository
+4. Configure environment variables (Spotify credentials)
+5. Render automatically builds and deploys from the Dockerfile
 
-```dockerfile
-FROM node:18-alpine AS build
-WORKDIR /app
+**Notes:**
+- ML models are bundled directly into the Docker image
+- Free-tier instances sleep after 15 minutes of inactivity
+- First request after sleep takes ~30-60 seconds (cold start)
 
-COPY frontend/package*.json ./
-RUN npm install
+### Frontend Deployment (Vercel)
 
-COPY frontend/ .
-ARG VITE_BACKEND_URL
-ENV VITE_BACKEND_URL=$VITE_BACKEND_URL
-RUN npm run build
+The frontend is deployed directly from GitHub to **Vercel**.
 
-FROM nginx:alpine
-COPY frontend/nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=build /app/dist /usr/share/nginx/html
+**Deployment Steps:**
+1. Push your frontend code to GitHub
+2. Import project in Vercel
+3. Configure build settings:
+   - Framework Preset: Vite
+   - Root Directory: `frontend`
+4. Add environment variable:
+   ```
+   VITE_BACKEND_URL=https://moodcast-backend-qsjk.onrender.com
+   ```
+5. Deploy
 
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
-```
+**Features:**
+- Automatic deployments on git push
+- Global CDN distribution
+- HTTPS enabled by default
+- Zero cold starts (always available)
+
+---
+
+## Docker Compose (Local Development)
+
+For local development with Docker:
 
 ### docker-compose.yml
 
@@ -341,8 +394,8 @@ Create a `.env` file in the project root:
 ```env
 SPOTIFY_CLIENT_ID=your_spotify_client_id
 SPOTIFY_CLIENT_SECRET=your_spotify_client_secret
-SPOTIFY_REDIRECT_URI=http://<your-ip>:8000/auth/callback
-VITE_BACKEND_URL=http://<your-ip>:8000
+SPOTIFY_REDIRECT_URI=http://localhost:8000/auth/callback
+VITE_BACKEND_URL=http://localhost:8000
 ```
 
 Build and start containers:
@@ -354,8 +407,8 @@ docker compose up -d
 ```
 
 Access the application:
-- Frontend: `http://<your-ip>:5173`
-- Backend API: `http://<your-ip>:8000`
+- Frontend: `http://localhost:5173`
+- Backend API: `http://localhost:8000`
 
 ---
 
@@ -366,7 +419,7 @@ AI/ML Engineer and Full-Stack Developer
 
 - Email: [rahulbalachandar24@gmail.com](mailto:rahulbalachandar24@gmail.com)
 - GitHub: [github.com/RahulB-24](https://github.com/RahulB-24)
-- LinkedIn: [linkedin.com/in/rahulbalachandar](https://linkedin.com/in/)
+- LinkedIn: [linkedin.com/in/rahulbalachandar](https://linkedin.com/in/rahulbalachandar)
 
 ---
 
@@ -379,4 +432,3 @@ This project is licensed under the MIT License.
 ## Contributing
 
 Issues and pull requests are welcome. Feel free to contribute improvements or report bugs.
-```
