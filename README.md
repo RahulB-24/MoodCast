@@ -21,10 +21,10 @@ The application is publicly accessible worldwide using a **fully free-tier cloud
 
 ### Frontend
 - **Platform**: Vercel
-- **URL**: https://mood-cast-xi.vercel.app/
+- **URL**: <a href="https://mood-cast-xi.vercel.app/" target="_blank">https://mood-cast-xi.vercel.app/</a>
 - **Details**:
   - Global CDN with HTTPS by default
-  - Always-on (no cold starts)
+  - Always-on
   - Static React + Vite build
 
 ### Backend
@@ -33,8 +33,7 @@ The application is publicly accessible worldwide using a **fully free-tier cloud
 - **Details**:
   - Dockerized FastAPI service
   - Hosts ML inference, audio processing, and Spotify integration
-  - Free-tier instances **sleep after inactivity**
-  - First request after idle may take ~30–60 seconds (cold start)
+  - Free-tier instances
 
 > The frontend communicates with the backend over HTTPS. No user authentication is required.
 
