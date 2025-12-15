@@ -7,5 +7,4 @@ librosa
 numpy
 scikit-learn
 soundfile
-faster-whisper
 python-dotenv
