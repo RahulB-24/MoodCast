@@ -15,6 +15,7 @@ COPY models/ models/
 COPY training/ training/
 
 ENV HF_HOME=/tmp/huggingface
+ENV PYTHONUNBUFFERED=1
 
 EXPOSE 8000
 
